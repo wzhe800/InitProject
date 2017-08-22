@@ -1,0 +1,10 @@
+1. git init //创建空仓库  此时有隐藏文件.git   通过ls -ah可看到
+2. git config --global user.email "email@example.com"  //设置用户邮箱
+3. git config --global user.name "name" //设置用户名
+4. git add readme.txt   //将readme.txt添加到仓库    加上第五步，就是提交仓库的步骤
+5. git commit -m "wrote a readme file" //将文件提交到仓库
+6. git status   //命令可以让我们时刻掌握仓库当前的状态
+
+
+
+rm -f .git/index.lock  //关闭其它GIT进程
