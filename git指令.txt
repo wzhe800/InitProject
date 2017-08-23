@@ -1,10 +1,45 @@
-1. git init //创建空仓库  此时有隐藏文件.git   通过ls -ah可看到
-2. git config --global user.email "email@example.com"  //设置用户邮箱
-3. git config --global user.name "name" //设置用户名
-4. git add readme.txt   //将readme.txt添加到仓库    加上第五步，就是提交仓库的步骤
-5. git commit -m "wrote a readme file" //将文件提交到仓库
-6. git status   //命令可以让我们时刻掌握仓库当前的状态
-
+git init //创建空仓库  此时有隐藏文件.git   通过ls -ah可看到
+git config --global user.email "email@example.com"  //设置用户邮箱
+git config --global user.name "name" //设置用户名
+git add readme.txt   //将readme.txt添加到暂存区    加上第五步，就是提交仓库的步骤
+git commit -m "wrote a readme file" //将文件提交到仓库（当前分支 如master）
+git status   //命令可以让我们时刻掌握仓库当前的状态
+git log //查看从近到远所有的版本记录
+cat readme.txt  //查看文件中的内容
+git reset --hard HEAD^   //回溯到上一版本
+git reset --hard HEAD~100   //回溯到前100个版本
+git reset --hard commit_id   //用commit_id返回已被回溯的某个未来版本.版本号没必要写全，前几位就可以了，Git会自动去找。当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了。
+git reflog  //查看从近到远所有的命令记录（可由此获得丢失了的commit_id，再由第11个指令回溯)
+git diff  //查看.git中所有文件被修改的内容
+git diff HEAD -- readme.txt  //查看指定文件中被修改的内容
+git checkout -- readme.txt //撤销工作区中的修改（增加、删除等）
+rm readme.txt   //将.git文件下的指定文件删除
+git rm readme.txt  //确定从版本库中删除此文件 并且git commit, 不确定可用第15条指令撤销
+git remote add origin https://github.com/wzhe800/learnGit.git  //将已有仓库与远程库相关联
+git push -u origin master   //将master推送到远程库中,第一次推送的同时将分支关联起来，之后便不用-u
+git clone https://github.com/wzhe800/learnGit.git   //克隆远程库
+git branch dev //创建dev分支
+git checkout dev //切换到dev分支
+git checkout -b dev  //创建dev分支并切换到dev分支
+git branch  //查看当前所在分支
+git merge dev  //将当前分支与dev分支合并
+git branch -d dev  //删除dev分支    -D可在合并前强行删除
+git log --graph  //看到分支合并图
+git stash  //把当前工作现场“储藏”起来，等以后恢复现场后继续工作
+git stash list  //查看保存的工作现场
+git stash apply stash@{0}  //加载第0号工作现场
+git stash drop stash@{0}  //删除第0号工作现场
+git stash pop //加载第一个工作现场并删除
+git remote -v  //查看远程库的信息(显示抓取和推送的地址）
+git tag v1.0  //给当前分支打上标签：v1.0
+git tag v1.0 commit_id  //给目标版本打上标签
+git tag  //查看所有标签
+git show v1.0   //查看标签v1.0的信息
+git tag -a v0.1 -m "version 0.1 released" 3628164  //给commit_id为3628164打头的版本附上带有说明的标签。-a代表标签名 -m代表标签说明
+git tag -d v0.1   //删除标签v0.1
+git push origin v1.0    //推送标签v1.0
+git push origin --tags   //将所有未推送的标签都推送到远程库
+git push origin :refs/tags/v1.0  //删除一个远程标签
 
 
 rm -f .git/index.lock  //关闭其它GIT进程
